@@ -1881,7 +1881,7 @@ const VCDealScreener = () => {
                   fontSize: '0.8125rem',
                   fontWeight: '600'
                 }}>
-                  {SECTOR_SCORING_CRITERIA[startup.sector].name}
+                  {SECTOR_SCORING_CRITERIA[startup.sector]?.name}
                 </span>
                 <span style={{
                   background: 'rgba(139, 92, 246, 0.15)',
