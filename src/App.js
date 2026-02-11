@@ -2084,5 +2084,276 @@ const VCDealScreener = () => {
     </div>
   );
 };
-
+const MOROCCAN_STARTUPS_EXTENDED = [
+  {
+    id: 31,
+    name: 'YoLaFresh',
+    sector: 'agritech',
+    stage: 'Seed',
+    location: 'Casablanca',
+    fundingRaised: 7000000,
+    revenue: 450000,
+    employees: 40,
+    foundedYear: 2022,
+    description: 'Chaîne d\'approvisionnement directe du producteur au détaillant.',
+    founders: ['Youssef Mamou', 'Larbi Alaoui Belrhiti'],
+    website: 'https://yolafresh.com',
+    contact: {
+      email: 'contact@yolafresh.com',
+      phone: '+212 5 22 XX XX XX',
+      linkedin: 'yolafresh'
+    },
+    metrics: {
+      yieldImprovement: 65,
+      farmerAdoption: 78,
+      techReliability: 88,
+      costEfficiency: 82,
+      sustainabilityImpact: 80
+    },
+    highlights: ['Levée record en Seed', 'Réduction du gaspillage alimentaire', 'Réseau logistique optimisé']
+  },
+  {
+    id: 32,
+    name: 'CloudFret',
+    sector: 'logistics',
+    stage: 'Seed',
+    location: 'Casablanca',
+    fundingRaised: 2100000,
+    revenue: 600000,
+    employees: 30,
+    foundedYear: 2021,
+    description: 'Optimisation du transport de marchandises par camion vide au retour.',
+    founders: ['Driss Jabar'],
+    website: 'https://cloudfret.com',
+    contact: {
+      email: 'info@cloudfret.com',
+      phone: '+212 5 22 XX XX XX',
+      linkedin: 'cloudfret'
+    },
+    metrics: {
+      yieldImprovement: 40,
+      farmerAdoption: 60,
+      techReliability: 92,
+      costEfficiency: 90,
+      sustainabilityImpact: 95
+    },
+    highlights: ['Réduction CO2 massive', 'Présence Europe-Afrique', 'Matchmaking IA en temps réel']
+  },
+  {
+    id: 33,
+    name: 'DabaDoc',
+    sector: 'healthtech',
+    stage: 'Growth',
+    location: 'Casablanca',
+    fundingRaised: 7000000,
+    revenue: 2000000,
+    employees: 60,
+    foundedYear: 2014,
+    description: 'Plateforme de prise de rendez-vous médicaux en ligne.',
+    founders: ['Zineb Drissi-Kaitouni'],
+    website: 'https://www.dabadoc.com',
+    contact: {
+      email: 'contact@dabadoc.com',
+      phone: '+212 5 22 XX XX XX',
+      linkedin: 'dabadoc'
+    },
+    metrics: {
+      yieldImprovement: 85,
+      farmerAdoption: 95,
+      techReliability: 98,
+      costEfficiency: 70,
+      sustainabilityImpact: 60
+    },
+    highlights: ['Partenariat avec Orange & AXA', 'Présence dans 5 pays', 'Leader de la e-santé au Maghreb']
+  },
+  {
+    id: 34,
+    name: 'WafR',
+    sector: 'fintech',
+    stage: 'Seed',
+    location: 'Casablanca',
+    fundingRaised: 1200000,
+    revenue: 250000,
+    employees: 18,
+    foundedYear: 2021,
+    description: 'Application de cashback et fidélité pour le commerce de proximité.',
+    founders: ['Ismail Bargach'],
+    website: 'https://wafr.com',
+    contact: {
+      email: 'hello@wafr.com',
+      phone: '+212 6 61 XX XX XX',
+      linkedin: 'wafr-app'
+    },
+    metrics: {
+      yieldImprovement: 55,
+      farmerAdoption: 85,
+      techReliability: 82,
+      costEfficiency: 88,
+      sustainabilityImpact: 50
+    },
+    highlights: ['Digitalisation de l\'épicerie', 'Forte croissance utilisateur', 'Données conso en temps réel']
+  },
+  {
+    id: 35,
+    name: 'Terraa',
+    sector: 'agritech',
+    stage: 'Pre-seed',
+    location: 'Rabat',
+    fundingRaised: 1500000,
+    revenue: 120000,
+    employees: 15,
+    foundedYear: 2022,
+    description: 'Marché B2B pour les produits frais de la ferme à l\'étalage.',
+    founders: ['Benoit De Vigne', 'Youssef Benkirane'],
+    website: 'https://terraa.com',
+    contact: {
+      email: 'sales@terraa.com',
+      phone: '+212 5 37 XX XX XX',
+      linkedin: 'terraa-agri'
+    },
+    metrics: {
+      yieldImprovement: 72,
+      farmerAdoption: 68,
+      techReliability: 80,
+      costEfficiency: 85,
+      sustainabilityImpact: 88
+    },
+    highlights: ['Réduction des intermédiaires', 'Focus sur les marges fermières', 'Expansion rapide sur Rabat/Casa']
+  },
+  {
+    id: 36,
+    name: 'DeepEcho',
+    sector: 'healthtech',
+    stage: 'Seed',
+    location: 'Rabat',
+    fundingRaised: 1000000,
+    revenue: 80000,
+    employees: 10,
+    foundedYear: 2021,
+    description: 'IA pour le diagnostic par ultrasons et détection prénatale.',
+    founders: ['Youssef Bouyakhf'],
+    website: 'https://deepecho.ai',
+    contact: {
+      email: 'ai@deepecho.ai',
+      phone: '+212 5 37 XX XX XX',
+      linkedin: 'deepecho'
+    },
+    metrics: {
+      yieldImprovement: 90,
+      farmerAdoption: 40,
+      techReliability: 95,
+      costEfficiency: 75,
+      sustainabilityImpact: 92
+    },
+    highlights: ['DeepTech de pointe', 'Réduction de la mortalité infantile', 'Certification internationale']
+  },
+  {
+    id: 37,
+    name: 'Chari',
+    sector: 'e-commerce',
+    stage: 'Series A',
+    location: 'Casablanca',
+    fundingRaised: 5000000,
+    revenue: 2500000,
+    employees: 150,
+    foundedYear: 2020,
+    description: 'Plateforme B2B de distribution pour les détaillants de proximité.',
+    founders: ['Ismael Belkhayat', 'Sophia Alj'],
+    website: 'https://chari.ma',
+    contact: {
+      email: 'info@chari.ma',
+      phone: '+212 5 22 XX XX XX',
+      linkedin: 'chari-co'
+    },
+    metrics: {
+      yieldImprovement: 60,
+      farmerAdoption: 92,
+      techReliability: 85,
+      costEfficiency: 82,
+      sustainabilityImpact: 70
+    },
+    highlights: ['Première startup marocaine Y Combinator', 'Acquisition de fintechs', 'Leader e-commerce B2B']
+  },
+  {
+    id: 38,
+    name: 'Freterium',
+    sector: 'logistics',
+    stage: 'Seed',
+    location: 'Casablanca',
+    fundingRaised: 4000000,
+    revenue: 1100000,
+    employees: 45,
+    foundedYear: 2020,
+    description: 'SaaS de gestion du transport pour les industriels et distributeurs.',
+    founders: ['Mehdi Cherif Alami', 'Omar El Hyani'],
+    website: 'https://freterium.com',
+    contact: {
+      email: 'contact@freterium.com',
+      phone: '+212 5 22 XX XX XX',
+      linkedin: 'freterium'
+    },
+    metrics: {
+      yieldImprovement: 50,
+      farmerAdoption: 55,
+      techReliability: 96,
+      costEfficiency: 92,
+      sustainabilityImpact: 78
+    },
+    highlights: ['Y Combinator alumni', 'Automatisation de la supply chain', 'Croissance régionale forte']
+  },
+  {
+    id: 39,
+    name: 'Susu',
+    sector: 'insurtech',
+    stage: 'Seed',
+    location: 'Casablanca',
+    fundingRaised: 2200000,
+    revenue: 400000,
+    employees: 35,
+    foundedYear: 2019,
+    description: 'Assurance santé connectée pour la diaspora africaine.',
+    founders: ['Bola Bardet'],
+    website: 'https://susu.fr',
+    contact: {
+      email: 'info@susu.fr',
+      phone: '+212 5 22 XX XX XX',
+      linkedin: 'susu-health'
+    },
+    metrics: {
+      yieldImprovement: 75,
+      farmerAdoption: 70,
+      techReliability: 85,
+      costEfficiency: 80,
+      sustainabilityImpact: 85
+    },
+    highlights: ['Focus inclusion financière', 'Prévention maladies chroniques', 'Service transfrontalier']
+  },
+  {
+    id: 40,
+    name: 'DataPathology',
+    sector: 'healthtech',
+    stage: 'Seed',
+    location: 'Casablanca',
+    fundingRaised: 1000000,
+    revenue: 200000,
+    employees: 20,
+    foundedYear: 2020,
+    description: 'Télépapathologie par IA pour le diagnostic du cancer.',
+    founders: ['Hicham El Attar', 'Mohammed El Khannoussi'],
+    website: 'https://datapathology.io',
+    contact: {
+      email: 'lab@datapathology.io',
+      phone: '+212 5 22 XX XX XX',
+      linkedin: 'datapathology'
+    },
+    metrics: {
+      yieldImprovement: 88,
+      farmerAdoption: 30,
+      techReliability: 94,
+      costEfficiency: 85,
+      sustainabilityImpact: 90
+    },
+    highlights: ['Diagnostic à distance rapide', 'Impact social majeur', 'Innovation médaillée']
+  }
+];
 export default VCDealScreener;
