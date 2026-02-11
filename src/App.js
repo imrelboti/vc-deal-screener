@@ -1519,7 +1519,7 @@ const VCDealScreener = () => {
               color: '#94a3b8',
               margin: '0.25rem 0 0 0'
             }}>
-              Écosystème Startups Marocaines · 40 Entreprises · Scoring Sectoriel Intelligent
+             <p>Écosystème Startups Marocaines · {MOROCCAN_STARTUPS.length} Entreprises · Scoring Sectoriel Intelligent</p>
             </p>
           </div>
         </div>
