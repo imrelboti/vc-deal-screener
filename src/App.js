@@ -139,7 +139,7 @@ const calculateSectorScore = (startup) => {
   return Math.round(totalScore);
 };
 
-// Base de données enrichie de 30 startups marocaines
+// Base de données enrichie de 40 startups marocaines
 const MOROCCAN_STARTUPS = [
   // FINTECH
   {
@@ -1349,7 +1349,7 @@ const VCDealScreener = () => {
               color: '#94a3b8',
               margin: '0.25rem 0 0 0'
             }}>
-              Écosystème Startups Marocaines · 30 Entreprises · Scoring Sectoriel Intelligent
+              Écosystème Startups Marocaines · 40 Entreprises · Scoring Sectoriel Intelligent
             </p>
           </div>
         </div>
