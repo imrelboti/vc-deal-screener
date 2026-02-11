@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'VC-deals';
+import React, { useState, useMemo } from 'React';
 import { Search, Filter, TrendingUp, DollarSign, MapPin, Star, ChevronRight, X, Award, Briefcase, Mail, Globe } from 'lucide-React';
 
 // Système de scoring sectoriel différencié
