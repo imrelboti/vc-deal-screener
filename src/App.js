@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Search, Filter, TrendingUp, DollarSign, MapPin, Star, ChevronRight, X, Award, Briefcase, Mail, Globe } from 'lucide-react';
+import React, { useState, useMemo } from 'VC-deals';
+import { Search, Filter, TrendingUp, DollarSign, MapPin, Star, ChevronRight, X, Award, Briefcase, Mail, Globe } from 'lucide-React';
 
 // Système de scoring sectoriel différencié
 const SECTOR_SCORING_CRITERIA = {
