@@ -1,0 +1,140 @@
+# docker-compose.yml
+# VC Deal Screener - Automated Data Collection
+# 
+# Usage:
+#   docker-compose up -d              # Démarrer tous les services
+#   docker-compose logs -f collector  # Voir les logs
+#   docker-compose down               # Arrêter
+
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: vc-screener-db
+    environment:
+      POSTGRES_DB: ${DB_NAME:-vc_deal_screener}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=fr_FR.UTF-8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # SQL d'initialisation
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - vc-screener-network
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: vc-screener-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - vc-screener-network
+    restart: unless-stopped
+
+  # Data Collector (Main Application)
+  collector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vc-screener-collector
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      # Database
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-vc_deal_screener}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      
+      # Redis
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      
+      # API Keys (from .env file)
+      CRUNCHBASE_API_KEY: ${CRUNCHBASE_API_KEY}
+      SERPER_API_KEY: ${SERPER_API_KEY}
+      BRIGHT_DATA_USERNAME: ${BRIGHT_DATA_USERNAME}
+      BRIGHT_DATA_PASSWORD: ${BRIGHT_DATA_PASSWORD}
+      
+      # Config
+      TZ: Africa/Casablanca
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    networks:
+      - vc-screener-network
+    restart: unless-stopped
+    command: python scheduler/auto_collector.py
+
+  # API REST (Optional - pour servir les données au frontend)
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: vc-screener-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-vc_deal_screener}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      SECRET_KEY: ${SECRET_KEY}
+    ports:
+      - "8000:8000"
+    networks:
+      - vc-screener-network
+    restart: unless-stopped
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+
+  # PgAdmin (Interface graphique PostgreSQL - DÉVELOPPEMENT SEULEMENT)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: vc-screener-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@vcscreener.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - vc-screener-network
+    profiles:
+      - dev  # Seulement en mode dev: docker-compose --profile dev up
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  vc-screener-network:
+    driver: bridge
